@@ -1,6 +1,5 @@
 from tkinter import *
 import numpy as np
-
 size_of_board = 600
 symbol_size = (size_of_board / 3 - size_of_board / 8) / 2
 symbol_thickness = 50
