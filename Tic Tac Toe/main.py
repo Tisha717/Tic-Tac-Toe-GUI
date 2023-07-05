@@ -8,9 +8,6 @@ symbol_O_color = '#0492CF'
 Green_color = '#7BC043'
 
 class Tic_Tac_Toe():
-    # ------------------------------------------------------------------
-    # Initialization Functions:
-    # ------------------------------------------------------------------
     def __init__(self):
         self.window = Tk()
         self.window.title('Tic-Tac-Toe')
@@ -49,12 +46,7 @@ class Tic_Tac_Toe():
         self.player_X_starts = not self.player_X_starts
         self.player_X_turns = self.player_X_starts
         self.board_status = np.zeros(shape=(3, 3))
-
-    # ------------------------------------------------------------------
-    # Drawing Functions:
-    # The modules required to draw required game based object on canvas
-    # ------------------------------------------------------------------
-
+        
     def draw_O(self, logical_position):
         logical_position = np.array(logical_position)
         # logical_position = grid value on the board
@@ -105,12 +97,7 @@ class Tic_Tac_Toe():
         score_text = 'Click to play again \n'
         self.canvas.create_text(size_of_board / 2, 15 * size_of_board / 16, font="cmr 20 bold", fill="gray",
                                 text=score_text)
-
-    # ------------------------------------------------------------------
-    # Logical Functions:
-    # The modules required to carry out game logic
-    # ------------------------------------------------------------------
-
+        
     def convert_logical_to_grid_position(self, logical_position):
         logical_position = np.array(logical_position, dtype=int)
         return (size_of_board / 3) * logical_position + size_of_board / 6
@@ -129,14 +116,12 @@ class Tic_Tac_Toe():
 
         player = -1 if player == 'X' else 1
 
-        # Three in a row
         for i in range(3):
             if self.board_status[i][0] == self.board_status[i][1] == self.board_status[i][2] == player:
                 return True
             if self.board_status[0][i] == self.board_status[1][i] == self.board_status[2][i] == player:
                 return True
-
-        # Diagonals
+                
         if self.board_status[0][0] == self.board_status[1][1] == self.board_status[2][2] == player:
             return True
 
@@ -190,7 +175,6 @@ class Tic_Tac_Toe():
                     self.board_status[logical_position[0]][logical_position[1]] = 1
                     self.player_X_turns = not self.player_X_turns
 
-            # Check if game is concluded
             if self.is_gameover():
                 self.display_gameover()
                 # print('Done')
